@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://rhumonngla1h"]
+
+[ext_resource type="Script" path="res://Units/Towers/tower.gd" id="1_uhmu3"]
+[ext_resource type="Texture2D" uid="uid://jv0f0dbdl3cg" path="res://Units/Towers/Miscellaneous/Hub.png" id="1_wmngx"]
+[ext_resource type="PackedScene" uid="uid://cxjca2hn87dwt" path="res://Projectiles/bullet.tscn" id="2_fw1w1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_awg3t"]
+radius = 187.267
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_134eq"]
+radius = 38.0132
+
+[node name="tower" type="StaticBody2D"]
+collision_mask = 3
+script = ExtResource("1_uhmu3")
+money_cost = 1
+upfront_energy_cost = 1
+reoccuring_energy_cost = 1
+bullet = ExtResource("2_fw1w1")
+max_health = 100.0
+attack_damage = 100.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_wmngx")
+
+[node name="Range" type="Area2D" parent="."]
+collision_mask = 2
+input_pickable = false
+
+[node name="RangeShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_awg3t")
+debug_color = Color(0.971747, 0, 0.162705, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_134eq")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
