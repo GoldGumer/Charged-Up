@@ -19,8 +19,17 @@ config/icon="res://icon.svg"
 
 Enemy="Units that are aiming to damage towers"
 Projectile="Objects that travel to deal damage to units"
+Tower="Units that target enemies and shoot projectiles"
+
+[layer_names]
+
+2d_physics/layer_1="Tower"
+2d_navigation/layer_1="Ground"
+2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Projectile"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

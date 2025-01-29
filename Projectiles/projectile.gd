@@ -1,15 +1,17 @@
 class_name Projectile
 
-extends StaticBody2D
+extends RigidBody2D
 
 @export var speed : float
-@export var damage : float
+var damage : float:
+	set(_value):
+		damage = _value
 
-func _physics_process(delta : float):
-	move_forward(delta)
+func _physics_process(_delta : float):
+	move_forward(_delta)
 
-func move_forward(delta : float):
-	var collision = move_and_collide(-transform.y * speed * delta, false, 0.08, false)
+func move_forward(_delta : float):
+	var collision = move_and_collide(-transform.y * speed * _delta, false, 0.08, false)
 	if collision != null:
 		collision.get_collider().call("receive_damage", damage)
 		queue_free()

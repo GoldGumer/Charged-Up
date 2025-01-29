@@ -10,15 +10,16 @@ radius = 187.267
 [sub_resource type="CircleShape2D" id="CircleShape2D_134eq"]
 radius = 38.0132
 
-[node name="tower" type="StaticBody2D"]
+[node name="Tower" type="RigidBody2D" groups=["Tower"]]
 collision_mask = 3
+gravity_scale = 0.0
 script = ExtResource("1_uhmu3")
 money_cost = 1
-upfront_energy_cost = 1
-reoccuring_energy_cost = 1
+energy_cost = 1
+energy_per_resource = 5
 bullet = ExtResource("2_fw1w1")
-max_health = 100.0
-attack_damage = 100.0
+max_health = 50.0
+attack_damage = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
