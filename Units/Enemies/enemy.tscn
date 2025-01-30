@@ -10,10 +10,10 @@ size = Vector2(12, 12)
 collision_layer = 2
 gravity_scale = 0.0
 script = ExtResource("1_a3gry")
-speed = 20.0
+speed = 40.0
 nav_agent = NodePath("Navigation/NavigationAgent")
 max_health = 10.0
-attack_damage = 10.0
+attack_damage = 40.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -27,9 +27,10 @@ shape = SubResource("RectangleShape2D_0igjx")
 [node name="NavigationAgent" type="NavigationAgent2D" parent="Navigation"]
 path_desired_distance = 12.0
 target_desired_distance = 12.0
+debug_use_custom = true
+debug_path_custom_color = Color(0.917238, 0, 0.108664, 1)
 
 [node name="RecalculatePathTimer" type="Timer" parent="Navigation"]
-
-[connection signal="link_reached" from="Navigation/NavigationAgent" to="." method="_on_navigation_agent_link_reached"]
-[connection signal="path_changed" from="Navigation/NavigationAgent" to="." method="_on_navigation_agent_path_changed"]
-[connection signal="target_reached" from="Navigation/NavigationAgent" to="." method="_on_navigation_agent_target_reached"]
+wait_time = 0.2
+one_shot = true
+autostart = true

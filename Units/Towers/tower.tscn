@@ -10,14 +10,15 @@ radius = 187.267
 [sub_resource type="CircleShape2D" id="CircleShape2D_134eq"]
 radius = 38.0132
 
-[node name="Tower" type="RigidBody2D" groups=["Tower"]]
-collision_mask = 3
+[node name="Tower" type="RigidBody2D" node_paths=PackedStringArray("attack_timer") groups=["Tower"]]
+collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource("1_uhmu3")
 money_cost = 1
 energy_cost = 1
 energy_per_resource = 5
 bullet = ExtResource("2_fw1w1")
+attack_timer = NodePath("AttackTimer")
 max_health = 50.0
 attack_damage = 10.0
 
@@ -38,6 +39,7 @@ shape = SubResource("CircleShape2D_134eq")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
 autostart = true
 
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
