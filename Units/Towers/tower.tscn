@@ -1,30 +1,54 @@
-[gd_scene load_steps=6 format=3 uid="uid://rhumonngla1h"]
+[gd_scene load_steps=9 format=3 uid="uid://rhumonngla1h"]
 
 [ext_resource type="Script" path="res://Units/Towers/tower.gd" id="1_uhmu3"]
-[ext_resource type="Texture2D" uid="uid://jv0f0dbdl3cg" path="res://Units/Towers/Miscellaneous/Hub.png" id="1_wmngx"]
-[ext_resource type="PackedScene" uid="uid://cxjca2hn87dwt" path="res://Projectiles/bullet.tscn" id="2_fw1w1"]
+[ext_resource type="Texture2D" uid="uid://rv4qo4m3l6xm" path="res://Units/Towers/Attackers/Zapper/Zapper.png" id="3_bct1r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33w76"]
+atlas = ExtResource("3_bct1r")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3mxr"]
+atlas = ExtResource("3_bct1r")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gyd6"]
+atlas = ExtResource("3_bct1r")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r2q5k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33w76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3mxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gyd6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.5
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_awg3t"]
-radius = 187.267
+radius = 150.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_134eq"]
-radius = 38.0132
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccqx2"]
+size = Vector2(32, 32)
 
 [node name="Tower" type="RigidBody2D" node_paths=PackedStringArray("attack_timer") groups=["Tower"]]
 collision_mask = 2
-gravity_scale = 0.0
 script = ExtResource("1_uhmu3")
 money_cost = 1
-energy_cost = 1
-energy_per_resource = 5
-bullet = ExtResource("2_fw1w1")
 attack_timer = NodePath("AttackTimer")
 max_health = 50.0
 attack_damage = 10.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("1_wmngx")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r2q5k")
+frame_progress = 0.793381
 
 [node name="Range" type="Area2D" parent="."]
 collision_mask = 2
@@ -35,7 +59,7 @@ shape = SubResource("CircleShape2D_awg3t")
 debug_color = Color(0.971747, 0, 0.162705, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_134eq")
+shape = SubResource("RectangleShape2D_ccqx2")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.0

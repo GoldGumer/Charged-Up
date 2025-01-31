@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd6lq5cp6wv16"
-path="res://.godot/imported/Black Slime.png-e0b379ce20dc3e59c08fdf924aa87fe5.ctex"
+uid="uid://bdos0qahgrouu"
+path="res://.godot/imported/Black Slime.png-63642f479613da5e0c3dcbaaf4b63188.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Units/Enemies/Black Slime.png"
-dest_files=["res://.godot/imported/Black Slime.png-e0b379ce20dc3e59c08fdf924aa87fe5.ctex"]
+source_file="res://Units/Enemies/Black Slime/Black Slime.png"
+dest_files=["res://.godot/imported/Black Slime.png-63642f479613da5e0c3dcbaaf4b63188.ctex"]
 
 [params]
 

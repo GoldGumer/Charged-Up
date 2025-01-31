@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3s8rklf4orm0"]
+
+[ext_resource type="Texture2D" uid="uid://0n1c433jqpm6" path="res://Tower Attacks/Lightning/Lightning.png" id="1_q1wjg"]
+[ext_resource type="Script" path="res://Tower Attacks/Lightning/lightning.gd" id="2_tt4mw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d4peo"]
+radius = 40.0
+
+[node name="Lightning" type="Sprite2D"]
+texture = ExtResource("1_q1wjg")
+script = ExtResource("2_tt4mw")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+autostart = true
+
+[node name="ChainLightningArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChainLightningArea"]
+shape = SubResource("CircleShape2D_d4peo")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="ChainLightningArea" to="." method="_on_chain_lightning_area_body_entered"]

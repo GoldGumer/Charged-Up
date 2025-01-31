@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxjca2hn87dwt"]
 
-[ext_resource type="Texture2D" uid="uid://dxaco4x51p4w0" path="res://Projectiles/Bullet.png" id="1_5wump"]
-[ext_resource type="Script" path="res://Projectiles/bullet.gd" id="1_ls83a"]
+[ext_resource type="Texture2D" uid="uid://dxaco4x51p4w0" path="res://Tower Attacks/Test Bullet/Bullet.png" id="1_5wump"]
+[ext_resource type="Script" path="res://Tower Attacks/Test Bullet/bullet.gd" id="1_ls83a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6sa46"]
 size = Vector2(8, 17)

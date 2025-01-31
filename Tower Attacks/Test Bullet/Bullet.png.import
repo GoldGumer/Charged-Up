@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jv0f0dbdl3cg"
-path="res://.godot/imported/Hub.png-df5c0c6cc3afafe9e46363195e7b2a3e.ctex"
+uid="uid://dxaco4x51p4w0"
+path="res://.godot/imported/Bullet.png-87b0c6f3f904ba7633dc6d7f4d69d1b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Units/Towers/Miscellaneous/Hub.png"
-dest_files=["res://.godot/imported/Hub.png-df5c0c6cc3afafe9e46363195e7b2a3e.ctex"]
+source_file="res://Tower Attacks/Test Bullet/Bullet.png"
+dest_files=["res://.godot/imported/Bullet.png-87b0c6f3f904ba7633dc6d7f4d69d1b3.ctex"]
 
 [params]
 

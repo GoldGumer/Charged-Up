@@ -26,7 +26,13 @@ Tower="Units that target enemies and shoot projectiles"
 2d_physics/layer_1="Tower"
 2d_navigation/layer_1="Ground"
 2d_physics/layer_2="Enemy"
+2d_navigation/layer_2="Towers"
 2d_physics/layer_3="Projectile"
+2d_navigation/layer_3="Resources"
+
+[physics]
+
+2d/default_gravity_vector=Vector2(0, 0)
 
 [rendering]
 

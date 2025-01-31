@@ -1,8 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0ke3ctc1ghgk"]
+[gd_scene load_steps=4 format=3 uid="uid://b0ke3ctc1ghgk"]
 
 [ext_resource type="Script" path="res://Player Tower Builder/player_tower_builder.gd" id="1_5am8w"]
-[ext_resource type="PackedScene" uid="uid://rhumonngla1h" path="res://Units/Towers/tower.tscn" id="2_148fy"]
+[ext_resource type="PackedScene" uid="uid://ctikcghpnf17s" path="res://Units/Towers/Attackers/Zapper/zapper.tscn" id="2_w36er"]
+[ext_resource type="PackedScene" uid="uid://bsg4apklbk741" path="res://Units/Towers/Attackers/Turret/turret.tscn" id="3_4ibmy"]
 
 [node name="PlayerTowerBuilder" type="Node2D"]
 script = ExtResource("1_5am8w")
-buildable_tower = [ExtResource("2_148fy")]
+buildable_tower = [ExtResource("2_w36er"), ExtResource("3_4ibmy")]

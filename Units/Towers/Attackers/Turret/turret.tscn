@@ -1,0 +1,111 @@
+[gd_scene load_steps=15 format=3 uid="uid://bsg4apklbk741"]
+
+[ext_resource type="Script" path="res://Units/Towers/Attackers/Turret/turret.gd" id="1_fe4lr"]
+[ext_resource type="Texture2D" uid="uid://b8neabe2xlv2w" path="res://Units/Towers/Attackers/Turret/Turret Base.png" id="2_h5rc7"]
+[ext_resource type="PackedScene" uid="uid://cxjca2hn87dwt" path="res://Tower Attacks/Test Bullet/bullet.tscn" id="2_sardt"]
+[ext_resource type="Texture2D" uid="uid://cndljxu5ifrh3" path="res://Units/Towers/Attackers/Turret/Turret Barrel.png" id="3_gakj8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7w4ay"]
+atlas = ExtResource("2_h5rc7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6sea"]
+atlas = ExtResource("2_h5rc7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jok4w"]
+atlas = ExtResource("2_h5rc7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1pnb8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7w4ay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6sea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jok4w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.5
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoyk6"]
+atlas = ExtResource("3_gakj8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5j4ey"]
+atlas = ExtResource("3_gakj8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1scfb"]
+atlas = ExtResource("3_gakj8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ah7a1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoyk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j4ey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1scfb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.5
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_awg3t"]
+radius = 100.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccqx2"]
+size = Vector2(32, 32)
+
+[node name="Turret" type="RigidBody2D" node_paths=PackedStringArray("barrel", "attack_timer") groups=["Tower"]]
+collision_mask = 2
+script = ExtResource("1_fe4lr")
+barrel = NodePath("Barrel")
+money_cost = 25
+energy_generation = 8
+tower_attack = ExtResource("2_sardt")
+attack_timer = NodePath("AttackTimer")
+max_health = 60.0
+attack_damage = 2.0
+
+[node name="Base" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1pnb8")
+autoplay = "default"
+frame_progress = 0.298692
+
+[node name="Barrel" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ah7a1")
+autoplay = "default"
+frame_progress = 0.47969
+
+[node name="Range" type="Area2D" parent="."]
+collision_mask = 2
+input_pickable = false
+
+[node name="RangeShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_awg3t")
+debug_color = Color(0.971747, 0, 0.162705, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ccqx2")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

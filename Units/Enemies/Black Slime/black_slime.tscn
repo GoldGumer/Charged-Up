@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://fe5ui8khq56i"]
+
+[ext_resource type="Script" path="res://Units/Enemies/Black Slime/black_slime.gd" id="1_fj3jf"]
+[ext_resource type="Texture2D" uid="uid://bdos0qahgrouu" path="res://Units/Enemies/Black Slime/Black Slime.png" id="2_nypjy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lglrq"]
+atlas = ExtResource("2_nypjy")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5nw8"]
+atlas = ExtResource("2_nypjy")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcvm1"]
+atlas = ExtResource("2_nypjy")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nogd1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lglrq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5nw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcvm1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.5
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0igjx"]
+size = Vector2(16, 16)
+
+[node name="BlackSlime" type="RigidBody2D" node_paths=PackedStringArray("nav_agent") groups=["Enemy"]]
+collision_layer = 2
+gravity_scale = 0.0
+script = ExtResource("1_fj3jf")
+speed = 40.0
+nav_agent = NodePath("Navigation/NavigationAgent")
+max_health = 20.0
+attack_damage = 10.0
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_nogd1")
+autoplay = "default"
+frame_progress = 0.524878
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0igjx")
+
+[node name="Navigation" type="Node2D" parent="."]
+
+[node name="NavigationAgent" type="NavigationAgent2D" parent="Navigation"]
+path_desired_distance = 12.0
+target_desired_distance = 12.0
+debug_use_custom = true
+debug_path_custom_color = Color(0.917238, 0, 0.108664, 1)
+
+[node name="RecalculatePathTimer" type="Timer" parent="Navigation"]
+wait_time = 0.2
+one_shot = true
+autostart = true

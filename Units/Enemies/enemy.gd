@@ -3,13 +3,14 @@ class_name Enemy
 extends Unit
 
 @export var speed : float
-@export var target : Node2D
+var target : Node2D
 @export var nav_agent : NavigationAgent2D
 
 var next_direction_movement : Vector2
 
 func _ready():
 	next_direction_movement = Vector2.ZERO
+	current_health = max_health
 	find_target()
 
 func _physics_process(_delta : float):
